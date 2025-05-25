@@ -177,6 +177,22 @@ button {
   max-width: 250px;
 }
 
+.ruban-discount {
+  position: absolute;
+  border-top: 100px solid red;
+  border-right: 100px solid transparent;
+  border-bottom: 100px solid transparent;
+}
+
+.ruban-discount::before {
+  content: "-$" attr(data-discount);
+  color: #fff;
+  position: absolute;
+  top: -70px;
+  left: 0px;
+  transform: rotate(-45deg);
+}
+
 .product-card h2,
 .product-card h3,
 .product-card p {
