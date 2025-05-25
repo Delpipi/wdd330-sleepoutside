@@ -11,4 +11,3 @@ const category = "tents";
 const dataSource = new ProductData(category);
 const productList = new ProductList(category, dataSource, listElement);
 productList.init();
-
