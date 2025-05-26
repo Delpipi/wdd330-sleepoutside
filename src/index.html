@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <meta name="description" content="WDD330 - Web Backend Development | Sleep Outside | Home Page">
+    <meta name="author" content="Kouame Alexandre Paul">
   </head>
 
   <body>
@@ -13,7 +15,7 @@
       <div class="hero">
         <img
           src="/images/banner-sm.jpg"
-          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
+          srcset="/images/banner-sm.jpg 500w, /images/banner.jpg"
           alt="image of a high mountain lake"
         />
         <div class="logo logo--square">
@@ -28,11 +30,38 @@
         </div>
       </div>
 
-      <section class="products">
-        <h2>Top Products</h2>
-        <ul class="product-list">
-          <!-- product-card -->
-        </ul>
+      <section class="categories">
+        <h2>Categories</h2>
+        <div class="category-links">
+          <a href="product_listing/?category=tents">
+            <img
+              src="public/images/category/category-tents.svg"
+              alt="category tents icon"
+            />
+            Tents
+          </a>
+          <a href="product_listing/?category=backpacks">
+            <img
+              src="public/images/category/category-backpacks.svg"
+              alt="category backpacks icon"
+            />
+            Backpacks
+          </a>
+          <a href="product_listing/?category=sleeping-bags">
+            <img
+              src="public/images/category/category-sleepingbags.svg"
+              alt="category sleepingbags icon"
+            />
+            Sleeping bags
+          </a>
+          <a href="product_listing/?category=hammocks">
+            <img
+              src="public/images/category/category-hammocks.svg"
+              alt="category hammocks icon"
+            />
+            Hammocks
+          </a>
+        </div>
       </section>
     </main>
     <footer id="main-footer"></footer>
