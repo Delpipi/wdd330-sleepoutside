@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource){
@@ -16,8 +16,20 @@ export default class ProductDetails {
   
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart");
-    cartItems.push(this.product);
+    let index = cartItems.findIndex((product) => product.Id === this.product.Id);
+    if (index !== -1) {
+      console.log(`INDEX: ${index}`);
+      this.product.qty = this.product.qty + 1;
+      cartItems[index] = this.product;
+    } else {
+      this.product.qty = 1;
+      cartItems.push(this.product);
+    }
+
     setLocalStorage("so-cart", cartItems);
+    
+    updateCartCount();
+    
   }
 
   renderProductDetails() {
