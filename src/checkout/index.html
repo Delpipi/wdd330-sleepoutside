@@ -8,7 +8,8 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
     <script src="../js/checkout.js" type="module"></script>
   </head>
 
@@ -16,10 +17,154 @@
     <header class="divider" id="main-header"></header>
 
     <main class="divider">
+      <!-- breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumb"></ul>
+      </nav>
+
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form name="checkout" id="checkout-form" action="#">
+          <input type="hidden" name="orderDate" id="orderDate" />
+          <fieldset>
+            <legend>Information</legend>
+            <!-- <div class="checkout__name">Customer Information -->
+            <div class="checkout__name">
+              <label
+                >First Name <span class="required">*</span>
+                <input
+                  type="text"
+                  name="fname"
+                  id="fname"
+                  title="Please enter your first name"
+                  autocomplete="name"
+                  value="John"
+                  required
+              /></label>
+              <label
+                >Last Name <span class="required">*</span>
+                <input
+                  type="text"
+                  name="lname"
+                  id="lname"
+                  title="Please enter your last name"
+                  autocomplete="name"
+                  value="Doe"
+                  required
+              /></label>
+            </div>
+            <div class="checkout__address">
+              <label
+                >Street Address <span class="required">*</span>
+                <input
+                  type="text"
+                  name="street"
+                  id="street"
+                  title="Please enter your street address"
+                  autocomplete="address-line1"
+                  value="123 Main St"
+                  required
+              /></label>
+              <label
+                >City <span class="required">*</span>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  title="Please enter your city"
+                  autocomplete="address-level2"
+                  value="Anytown"
+                  required
+              /></label>
+              <label
+                >State <span class="required">*</span>
+                <input
+                  type="text"
+                  name="state"
+                  id="state"
+                  title="Please enter your state"
+                  autocomplete="address-level1"
+                  value="CA"
+                  required
+              /></label>
+              <label
+                >Zip Code <span class="required">*</span>
+                <input
+                  type="text"
+                  name="zip"
+                  id="zip"
+                  title="Please enter your zip code"
+                  autocomplete="postal-code"
+                  value="12345"
+                  required
+              /></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <div class="checkout__payment">
+              <label
+                >Credit Card Number <span class="required">*</span>
+                <input
+                  type="tel"
+                  name="cardNumber"
+                  id="cardNumber"
+                  title="Please enter your credit card number"
+                  autocomplete="cc-number"
+                  value="1234 1234 1234 1234"
+                  pattern="[0-9\s\-]{13,19}"
+                  maxlength="19"
+                  required
+              /></label>
+              <!-- <label>Credit Card Number <span class="required">*</span> <input type="tel" name="credit-card-number" id="expiration-date" title="Please enter your credit card number" autocomplete="cc-number" placeholder="1234 1234 1234 1234" pattern="[0-9\s-]{13,19}" required></label> -->
+              <label
+                >Expiration Date <span class="required">*</span>
+                <input
+                  type="text"
+                  name="expiration"
+                  id="expiration"
+                  title="Please enter your expiration date"
+                  autocomplete="cc-exp"
+                  value="01/28"
+                  pattern="\d{2}/\d{2}"
+                  required
+              /></label>
+              <!-- <label>Expiration Date <span class="required">*</span> <input type="number" name="expiration-date" id="expiration-date" title="Please enter your expiration date" autocomplete="cc-exp" placeholder="MM/YY" required></label> -->
+              <label
+                >Security Code <span class="required">*</span>
+                <input
+                  type="tel"
+                  name="code"
+                  id="code"
+                  title="Please enter your security code"
+                  autocomplete="cc-csc"
+                  value="123"
+                  pattern="[0-9]{3,4}"
+                  maxlength="4"
+                  required
+              /></label>
+            </div>
+          </fieldset>
+          <fieldset class="checkout-summary">
+            <legend>Order Summary</legend>
+            <div class="order__summary">
+              <div>Items</div>
+              <div id="num-items"></div>
+              <div>Subtotal</div>
+              <div id="cartTotal"></div>
+              <div>Tax</div>
+              <div id="tax"></div>
+              <div>Shipping</div>
+              <div id="shipping"></div>
+              <div>Total</div>
+              <div id="orderTotal"></div>
+            </div>
+          </fieldset>
+          <input type="submit" id="checkoutSubmit" value="Place Order" />
+        </form>
       </section>
     </main>
+
     <footer id="main-footer"></footer>
   </body>
 </html>
