@@ -1,4 +1,6 @@
 import { renderListWithTemplate } from "./utils.mjs";
+import Breadcumb from "./components/Breadcrumb.mjs";
+import BreadCumbItem from "./components/BreadcrumbItem.mjs";
 
 function productCardTemplate(product) {
     const discounted = product.FinalPrice < product.SuggestedRetailPrice;
@@ -26,11 +28,17 @@ export default class ProductList {
 
     async init() {
       const list = await this.dataSource.getData(this.category);
+      this.renderBreadCumdList(list);
       this.renderList(list);
-      //console.table(list);
-    }
+  }
+  
+  renderBreadCumdList(list) {
+    const breadcumb = new Breadcumb(".breadcrumb");
+    breadcumb.addItem(new BreadCumbItem(`${this.category} (${list.length} Items)`, null, true));
+    breadcumb.renderItems();
+  }
 
-    renderList(list) {
-      renderListWithTemplate(productCardTemplate, this.listElement, list);
-    }
+  renderList(list) {
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
+  }
 }

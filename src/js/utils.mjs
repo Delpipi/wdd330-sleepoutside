@@ -44,6 +44,13 @@ export function updateCartCount() {
     countElement.textContent = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
   }
 }
+
+export function updateCartQtyInLocalStorage(id, qty) {
+  let cartItems = getLocalStorage("so-cart") || [];
+  const itemIndex = cartItems.findIndex(item => item.Id == id);
+  cartItems[itemIndex].quantity = qty;
+  setLocalStorage("so-cart", cartItems);
+}
   
 export async function loadTemplate(path) {
   const res = await fetch(path);
