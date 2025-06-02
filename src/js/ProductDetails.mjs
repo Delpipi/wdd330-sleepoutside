@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 import Breadcumb from "./components/Breadcrumb.mjs";
 import BreadCumbItem from "./components/BreadcrumbItem.mjs";
 
@@ -40,7 +40,7 @@ export default class ProductDetails {
     setLocalStorage("so-cart", cartItems);
     
     updateCartCount();
-    
+    alertMessage("item is successfully added");
   }
 
   renderProductDetails() {

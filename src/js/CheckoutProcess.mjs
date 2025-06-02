@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, removeAllAlerts, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import Breadcumb from "./components/Breadcrumb.mjs";
 import BreadCumbItem from "./components/BreadcrumbItem.mjs";
@@ -79,7 +79,6 @@ export default class CheckoutProcess {
 
   async checkout(form) {
     const order = formDataToJSON(form);
-
     order.orderDate = new Date().toISOString();
     order.orderTotal = this.orderTotal;
     order.tax = this.tax;
@@ -88,9 +87,20 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(order);
-      console.log(response);
+      if (response) {
+        this.clearCartContent();
+        window.location.href = "success.html";
+      }
     } catch (err) {
+      removeAllAlerts();
+      for (let message in err.messages) {
+        alertMessage(err.messages[message]);
+      }
       console.log(err);
     }
+  }
+
+  clearCartContent() {
+    setLocalStorage("so-cart", []);
   }
 }
