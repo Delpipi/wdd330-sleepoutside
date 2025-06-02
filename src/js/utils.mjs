@@ -13,6 +13,7 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -76,4 +77,31 @@ export function renderWithTemplate(template, parentELement, data, callback) {
   if (callback) {
     callback(data);
   }
+}
+
+export function alertMessage(msge, scroll = true) {
+  // create element to hold the alert
+  const alert = document.createElement('div');
+
+  alert.classList.add('alert');
+  alert.innerHTML = alert.innerHTML = `<p>${msge}</p><span>X</span>`;
+ 
+  alert.addEventListener('click', function(e) {
+      if(e.target.innerText === "X") { // how can you tell if they clicked on the X or on something else?  hint: check out e.target.tagName or e.target.innerText
+        alert.remove();
+      }
+  })
+
+  const breadcrumb = document.querySelector('.breadcrumb');
+  breadcrumb.insertAdjacentElement('afterend',alert);
+  
+  if (scroll) {
+    window.scrollTo(0,0);
+  }
+  
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }

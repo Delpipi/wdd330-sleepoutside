@@ -16,5 +16,12 @@ document
 document.forms["checkout"].addEventListener("submit", (event) => {
   event.preventDefault();
   let form = event.target;
-  order.checkout(form);
+  const isValid = form.checkValidity();
+  form.reportValidity()
+  if (isValid) {  
+    order.checkout(form);
+  } else {
+    
+  }
+  
 });
