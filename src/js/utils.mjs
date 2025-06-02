@@ -105,3 +105,8 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+export function getDiscountPercent(finalPrice, originalPrice) {
+  const discount = 1 - (finalPrice / originalPrice);
+  return Math.round(discount * 100);
+}

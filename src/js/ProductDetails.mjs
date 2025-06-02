@@ -1,4 +1,4 @@
-import { alertMessage, getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
+import { alertMessage, getDiscountPercent, getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 import Breadcumb from "./components/Breadcrumb.mjs";
 import BreadCumbItem from "./components/BreadcrumbItem.mjs";
 
@@ -52,13 +52,13 @@ export default class ProductDetails {
     productImage.alt = this.product.Name;
     productImage.setAttribute("loading", "lazy");
   
-    const productDiscount = 1 - (this.product.FinalPrice  / this.product.SuggestedRetailPrice);
+    const discount = getDiscountPercent(this.product.FinalPrice, this.product.SuggestedRetailPrice);
   
     let productPriceText = `$${this.product.FinalPrice}`;
   
-    if (productDiscount > 0) {
+    if (discount > 0) {
       document.querySelector(".product-card__srp").textContent = `SRP: $${this.product.SuggestedRetailPrice.toFixed(2)}`;
-      productPriceText += `<span class="product-card__discount">-${Math.round(productDiscount * 100)}% off</span>`;
+      productPriceText += `<span class="product-card__discount">-${discount}% off</span>`;
     }
   
     

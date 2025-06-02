@@ -17,11 +17,8 @@ document.forms["checkout"].addEventListener("submit", (event) => {
   event.preventDefault();
   let form = event.target;
   const isValid = form.checkValidity();
-  form.reportValidity()
-  if (isValid) {  
+  form.reportValidity();
+  if (isValid) {
     order.checkout(form);
-  } else {
-    
   }
-  
 });
